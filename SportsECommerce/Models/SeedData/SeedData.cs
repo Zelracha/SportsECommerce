@@ -19,16 +19,16 @@ namespace SportsECommerce.Models.SeedData
                 context.Products.AddRange(
                     new Product
                     {
-                        Name = "Kayak", 
-                        Description = "A boat for one person", 
-                        Category = "Water Sports", 
+                        Name = "Kayak",
+                        Description = "A boat for one person",
+                        Category = "Water Sports",
                         Price = 275
                     },
                     new Product
                     {
-                        Name = "Soccer Ball", 
-                        Description = "FIFA-approved Ball", 
-                        Category = "Soccer", 
+                        Name = "Soccer Ball",
+                        Description = "FIFA-approved Ball",
+                        Category = "Soccer",
                         Price = 19.50m
                     },
                     new Product
@@ -37,7 +37,15 @@ namespace SportsECommerce.Models.SeedData
                         Description = "35,000-seat stadium",
                         Category = "Soccer",
                         Price = 79500
+                    },
+                    new Product
+                    {
+                        Name = "Baseball Ball",
+                        Description = "MLB Approved Ball",
+                        Category = "Baseball",
+                        Price = 299.99m
                     });
+
 
                 context.SaveChanges();
 
