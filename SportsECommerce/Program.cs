@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SportsECommerce.Data;
+using SportsECommerce.Models.Repository;
+using SportsECommerce.Models.SeedData;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,9 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<StoreDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("SportStoreConnection")));
+
+builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
+
 
 var app = builder.Build();
 
@@ -29,5 +34,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+// to call the EnsurePopulated method 
+SeedData.EnsurePopulated(app);
 
 app.Run();
