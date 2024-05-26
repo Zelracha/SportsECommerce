@@ -1,17 +1,17 @@
-﻿@model IQueryable<Product>
+﻿@model ProductsListViewModel
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to E-Commerce Sports Store</h1>
-</div>
+
 
 <!--Displaying of views in the sample seed data-->
-@foreach (var p in Model ?? Enumerable.Empty<Product>())
+@foreach (var p in Model?.Products ?? Enumerable.Empty<Product>())
 {
     <h3>@p.Name</h3>
     @p.Description
     <h4>@p.Price.ToString("c")</h4>
 }
+
+<div page-model="@Model?.PagingInfo" page-action="Index"></div>
