@@ -13,6 +13,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("SportStoreConnec
 
 builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
 
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -31,9 +32,19 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.MapControllerRoute("catpage",
+    "{category}/Page{productPage:int}",
+    new { Controller = "Home", action = "Index"});
+
+app.MapControllerRoute("page", "Page{productPage:int}",
+    new { Controller = "Home", action = "Index", productPage = 1});
+
+app.MapControllerRoute("category", "{category}",
+    new { Controller = "Home", action = "Index", productPage = 1 });
+
 app.MapControllerRoute("pagination",
  "Products/Page{productPage}",
- new { Controller = "Home", action = "Index" });
+ new { Controller = "Home", action = "Index", productPage = 1 });
 
 app.MapControllerRoute(
     name: "default",
